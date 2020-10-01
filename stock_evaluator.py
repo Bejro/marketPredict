@@ -126,8 +126,21 @@ def evaluate(stock, src='yahoo', pts=20):
 
     return dif_f
 
-def plot(stock, days, up=0.1, dw=0.1):
-    dif=evaluate(stock, pts = days)
+def plot(stock, days):
+    up=1
+    dw=1
+    dif=evaluate(stock, pts=days)
+    for i in range(100):
+        pts=np.where(dif>up)[0]
+        if len(pts)>days/10 and np.max(pts)-np.min(pts)>days/4:
+            break
+        up-=0.01
+    for i in range(100):
+        pts=np.where(dif<-dw)[0]
+        if len(pts)>days/10 and np.max(pts)-np.min(pts)>days/4:
+            break
+        dw-=0.01
+
     plt.axhline(0,color="gray")
     plt.plot(dif)
     plt.axhline(up, color='green')
