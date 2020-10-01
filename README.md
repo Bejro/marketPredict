@@ -6,4 +6,4 @@ How to use:
 
 -import stock_evaluator.py
 
--use plot function for stock of choice ex 'MSFT'
+-use plot function for stock of choice, ex. 'MSFT'
